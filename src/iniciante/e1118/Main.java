@@ -13,21 +13,21 @@ public class Main {
     }
 
 
-    private static int leituraDeX() {
-        int r;
-        r = leituraDeInt();
+    private static double obterNotaValida() {
+    	double r;
+        r = leituraDeDouble();
         if (r < 0 || r > 10) {
             System.out.println("nota invalida");
-            r = leituraDeX();
+            r = obterNotaValida();
         }
         return r;
     }
-    private static double obterNotaValida() {
-        double r;
-        r = leituraDeDouble();
+    private static int leituraDeX() {
+    	int r;
+        r = leituraDeInt();
         if (r < 1 || r > 2) {
-            System.out.println("nota invalida");
-            r = obterNotaValida();
+            System.out.println("novo calculo (1-sim 2-nao)");
+            r = leituraDeX();
         }
         return r;
     }
@@ -41,7 +41,7 @@ public class Main {
 
         // Entrada: Leitura do uma nota valor real e valida em 'N1'
         N2 = obterNotaValida();
-        System.out.printf("media = %.2f", ((N1 + N2) /2));
+        System.out.printf("media = %.2f\n", ((N1 + N2) /2));
         System.out.println("novo calculo (1-sim 2-nao)");
         
         if(1 == leituraDeX()){
@@ -51,15 +51,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Declaracao de variaveis.
-        double N1 = -1, N2 = -1, Aux;
-
-        // Entrada: Leitura do uma nota valor real e valida em 'N1'
-        N1 = obterNotaValida();
-
-        // Entrada: Leitura do uma nota valor real e valida em 'N1'
-        N2 = obterNotaValida();
-
-        System.out.printf("media = %.2f\n", ((N1 + N2) / 2));
+    	novoCalculo();
     }
 }

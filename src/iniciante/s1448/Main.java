@@ -12,8 +12,6 @@ public class Main {
 	private static int time_2;
 	private static String time_frase_1;
 	private static String time_frase_2;
-	private static String Vencedor;
-	
 	
 	// main(args)
 	public static void main(String[] args) {
@@ -53,16 +51,16 @@ public class Main {
 		} else {
 			testaEmpate();
 		}
-		if(instancia < t) {
-			System.out.println();
-		}
+		System.out.println();
 	}
 
 	private static int coincidencias(String time) {
 		int coincidencias = 0;
 		for(int i = 0; i < time.length(); i++) {
-			if(time.getBytes()[i] == fraseCoreta.getBytes()[i]) {
+			if(time.charAt(i) == fraseCoreta.charAt(i)) {
 				coincidencias++;
+			} else {
+				
 			}
 		}
 		return coincidencias;
@@ -71,18 +69,18 @@ public class Main {
 
 	private static void testaEmpate() {
 		for(int i = 0; i < fraseCoreta.length(); i++) {
-			if(fraseCoreta.getBytes()[i] != time_frase_1.getBytes()[i]
-					&& fraseCoreta.getBytes()[i] != time_frase_2.getBytes()[i]) {
+			if(fraseCoreta.charAt(i) != time_frase_1.charAt(i)
+					&& fraseCoreta.charAt(i) != time_frase_2.charAt(i)) {
 				System.out.println("empate");
 				return;
 			}
-			if (fraseCoreta.getBytes()[i] == time_frase_1.getBytes()[i]
-					&& fraseCoreta.getBytes()[i] != time_frase_2.getBytes()[i]) {
+			if (fraseCoreta.charAt(i) == time_frase_1.charAt(i)
+					&& fraseCoreta.charAt(i) != time_frase_2.charAt(i) ){
 				System.out.println("time 1");
 				return;
 			}
-			if (fraseCoreta.getBytes()[i] != time_frase_1.getBytes()[i]
-					&& fraseCoreta.getBytes()[i] == time_frase_2.getBytes()[i]) {
+			if (fraseCoreta.charAt(i) != time_frase_1.charAt(i)
+					&& fraseCoreta.charAt(i) == time_frase_2.charAt(i)) {
 				System.out.println("time 2");
 				return;
 			}

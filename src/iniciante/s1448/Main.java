@@ -67,25 +67,26 @@ public class Main {
 	}
 
 
-	private static void testaEmpate() {
+	private static int testaEmpate() {
 		for(int i = 0; i < fraseCoreta.length(); i++) {
 			if(fraseCoreta.charAt(i) != time_frase_1.charAt(i)
 					&& fraseCoreta.charAt(i) != time_frase_2.charAt(i)) {
 				System.out.println("empate");
-				return;
+				return 0;
 			}
 			if (fraseCoreta.charAt(i) == time_frase_1.charAt(i)
 					&& fraseCoreta.charAt(i) != time_frase_2.charAt(i) ){
 				System.out.println("time 1");
-				return;
+				return 0;
 			}
 			if (fraseCoreta.charAt(i) != time_frase_1.charAt(i)
 					&& fraseCoreta.charAt(i) == time_frase_2.charAt(i)) {
 				System.out.println("time 2");
-				return;
+				return 0;
 			}
 		}
 		System.out.println("empate");
+		return 0;
 	}
 
 	private static int leituraDeInt() {

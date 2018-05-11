@@ -33,7 +33,7 @@ public class Main {
 			} else {
 				break;
 			}
-		} while(!(H1 == 0 && M1 == 0 && H2 == 0 && M2 == 0));
+		} while(true);
 	}
 
 	private static void imprimeResultado() {
@@ -59,7 +59,7 @@ public class Main {
 			mM = 60 - M1 + M2;
 		}
 		if(mH > 0)mH--;
-		System.out.print("\n" + (mH * 60 + mM));
+		System.out.printf("%d\n",(mH * 60 + mM));
 	}
 	
 }

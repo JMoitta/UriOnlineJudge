@@ -7,11 +7,13 @@ public class Main {
 	// Declaracao de variaveis
 	private static Scanner scan = new Scanner(System.in);
 	private static int t;
-	private static String fraseCoreta;
-	private static int time_1;
-	private static int time_2;
-	private static String time_frase_1;
-	private static String time_frase_2;
+	private static String frase;
+	private static String frase_time_1;
+	private static String frase_time_2;
+	private static int coincidenciasTime1 = 0;
+	private static int coincidenciasTime2 = 0;
+	private static int primeiroErroTime1 = -1;
+	private static int primeiroErroTime2 = -1;
 	
 	// main(args)
 	public static void main(String[] args) {
@@ -21,76 +23,57 @@ public class Main {
 	}
 
 	private static void telefoneSemFio() {
+		t = Integer.parseInt(scan.nextLine());
 		
-		t = leituraDeInt();
-		
-		for(int i = 1; i <= t; i++) {
-			fraseCoreta = scan.nextLine();
-			// Time 1
-			time_frase_1 = scan.nextLine();
-			time_1 = coincidencias(time_frase_1);
+		for(int i = 0; i < t;) {
+			frase = scan.nextLine();
+			frase_time_1 = scan.nextLine();
+			frase_time_2 = scan.nextLine();
 			
-			// Time 2
-			time_frase_2 = scan.nextLine();
-			time_2 = coincidencias(time_frase_2);
-			
-			// Imprimir resultado
-			imprimirResultado(i);
+			imprimirInstancia(++i);
 		}
 	}
 
-	private static void imprimirResultado(int instancia) {
-		
-		// Instancia
-		System.out.printf("Instancia %d\n", instancia);
-		
-		if(time_1 > time_2) {
-			System.out.println("time 1");
-		} else if (time_2 > time_1) {
-			System.out.println("time 2");
-		} else {
-			testaEmpate();
-		}
-		System.out.println();
-	}
-
-	private static int coincidencias(String time) {
-		int coincidencias = 0;
-		for(int i = 0; i < time.length(); i++) {
-			if(time.charAt(i) == fraseCoreta.charAt(i)) {
-				coincidencias++;
-			} else {
+	private static void imprimirInstancia(int instancia) {
+		primeiroErroTime1 = -1;
+		primeiroErroTime2 = -1;
+		coincidenciasTime1 = 0;
+		coincidenciasTime2 = 0;
+		for(int i = 0; i < frase.length(); i++) {
+			if(frase.length() == frase_time_1.length() && (frase_time_1.charAt(i) == frase.charAt(i))) {
+				coincidenciasTime1++;
+			}
+			else if(primeiroErroTime1 == -1) {
+				primeiroErroTime1 = i;
+			}
+			if(frase.length() == frase_time_1.length() && (frase_time_2.charAt(i) == frase.charAt(i))) {
+				coincidenciasTime2 ++;
+			}
+			else if(primeiroErroTime2 == -1) {
+				primeiroErroTime2 = i;
+			}
+			
+			if(primeiroErroTime1 == primeiroErroTime2 && primeiroErroTime1 != -1) {
+				primeiroErroTime1 = -1;
+				primeiroErroTime2 = -1;
 				
 			}
 		}
-		return coincidencias;
-	}
-
-
-	private static int testaEmpate() {
-		for(int i = 0; i < fraseCoreta.length(); i++) {
-			if(fraseCoreta.charAt(i) != time_frase_1.charAt(i)
-					&& fraseCoreta.charAt(i) != time_frase_2.charAt(i)) {
-				System.out.println("empate");
-				return 0;
-			}
-			if (fraseCoreta.charAt(i) == time_frase_1.charAt(i)
-					&& fraseCoreta.charAt(i) != time_frase_2.charAt(i) ){
+		System.out.println("Instancia " + instancia);
+		if (coincidenciasTime1 > coincidenciasTime2) {
+			System.out.println("time 1");
+		} else if (coincidenciasTime1 <	 coincidenciasTime2) {
+			System.out.println("time 2");
+		} else {
+			if (primeiroErroTime1 > primeiroErroTime2 && primeiroErroTime1 != -1) {
 				System.out.println("time 1");
-				return 0;
-			}
-			if (fraseCoreta.charAt(i) != time_frase_1.charAt(i)
-					&& fraseCoreta.charAt(i) == time_frase_2.charAt(i)) {
+			} else if (primeiroErroTime1 < primeiroErroTime2 && primeiroErroTime2 != -1) {
 				System.out.println("time 2");
-				return 0;
+			} else {
+				System.out.println("empate");
 			}
 		}
-		System.out.println("empate");
-		return 0;
-	}
-
-	private static int leituraDeInt() {
-		return Integer.parseInt(scan.nextLine());
+		System.out.println("");
 	}
 
 }

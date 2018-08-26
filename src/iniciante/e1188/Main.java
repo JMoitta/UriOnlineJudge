@@ -17,7 +17,7 @@ public class Main {
 	public static void main(String[] args) {
 		Locale.setDefault(Locale.US);
 		/*
-		 * 1187 Área Superior
+		 * 1188 Área Inferior
 		 */
 		abaixoDaDiagonalSecundaria();
 	}
